@@ -19,7 +19,7 @@ int main(void)
     }
     while (min >= max);
 
-    for (int i = min+1; i <= max; i++)
+    for (int i = min; i <= max; i++)
     {
         if (prime(i) == true)
         {
@@ -31,14 +31,16 @@ int main(void)
 bool prime(int number)
 {
     bool answer;
-    for (int i = 2; i < number-1; i++)
+    for (int i = 2; i < number - 1; i++)
     {
-        if (number % i == 0) {
-            answer = false;
+        if (number % i == 0)
+        {
+            answer = false; //not prime
             break;
         }
-        else if (number % i !=0) {
-            answer = true;
+        else if (number % i != 0)
+        {
+            answer = true; //prime
         }
     }
     return answer;
