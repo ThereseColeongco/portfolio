@@ -19,9 +19,9 @@ int main(void)
     }
     while (min >= max);
 
-    for (int i = min; i <= max; i++)
+    for (int i = min+1; i <= max; i++)
     {
-        if (prime(i))
+        if (prime(i) == true)
         {
             printf("%i\n", i);
         }
@@ -30,13 +30,16 @@ int main(void)
 
 bool prime(int number)
 {
-    for (int i = 2; i > number; i++)
+    bool answer;
+    for (int i = 2; i < number-1; i++)
     {
         if (number % i == 0) {
-            return false;
+            answer = false;
+            break;
         }
-        else {
-            return true;
+        else if (number % i !=0) {
+            answer = true;
         }
     }
+    return answer;
 }
