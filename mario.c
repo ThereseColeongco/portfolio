@@ -29,11 +29,15 @@ int main(void)
         printf("\n");
         */
         // alternatively:
-        for (int j = 0; j < height; j++) { // for every column
-            if (i + j < height - 1) {
+        // for every column
+        for (int j = 0; j < height; j++)
+        {
+            if (i + j < height - 1)
+            {
                 printf(" ");
             }
-            else {
+            else
+            {
                 printf("#");
             }
         }
