@@ -15,8 +15,10 @@ int main(void)
     for (int i = 0; i < height; i++) // for every row
     {
         /*
+        // printf("%i", i); if you find it hard to trace just by looking at it, print what's happening
         for (int k = height - 1; k > i; k--) // moves pyramid so it's right-aligned
         {
+            // printf("%i", k); if you find it hard to trace just by looking at it, print what's happening
             // e.g. print 4 ., next row print 3 ., next row print 2 ., next row print 1 ., next row print 0 .
             // start at k = height - 1 then - 1 each row until k = 0
             printf(" ");
