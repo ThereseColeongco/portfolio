@@ -50,7 +50,7 @@ int calculate_quarters(int cents)
 {
     int quarters = cents / 25;
     return quarters;
-    cents = cents - 25*quarters;
+    cents = cents - 25 * quarters;
     return cents;
 }
 
@@ -58,7 +58,7 @@ int calculate_dimes(int cents)
 {
     int dimes = cents / 10;
     return dimes;
-    cents = cents - 10*dimes;
+    cents = cents - 10 * dimes;
     return cents;
 }
 
@@ -66,7 +66,7 @@ int calculate_nickels(int cents)
 {
     int nickels = cents / 5;
     return nickels;
-    cents = cents - 5*nickels;
+    cents = cents - 5 * nickels;
     return cents;
 }
 
@@ -74,6 +74,6 @@ int calculate_pennies(int cents)
 {
     int pennies = cents / 1;
     return pennies;
-    cents = cents - 1*pennies;
+    cents = cents - 1 * pennies;
     return cents;
 }
