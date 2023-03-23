@@ -19,15 +19,14 @@ int main(void)
     {
         for (int column = 0; column < height + row + 3; column++)
         {
-                if (row + column < height - 1 || column == height || column == height + 1)
-                {
-                    printf(" ");
-
-                }
-                else
-                {
-                    printf("#");
-                }
+            if (row + column < height - 1 || column == height || column == height + 1)
+            {
+                printf(" ");
+            }
+            else
+            {
+                printf("#");
+            }
         }
         printf("\n");
     }
