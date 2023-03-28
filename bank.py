@@ -1,4 +1,4 @@
-greeting = input("Send a greeting: ").lower().split(" ", 1)[0]
+greeting = input("Send a greeting: ").lower().strip().split(" ", 1)[0]
 
 if greeting == "hello" or greeting == "hello,":
     print("$0")
