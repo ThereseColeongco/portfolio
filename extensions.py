@@ -1,8 +1,8 @@
 file = input("Enter a file name in the format name_of_file.extension : ").lower().strip()
 
 # this extension definition (instead of original file.split(.)[1]) fixes the following errors:
-extension = file.split('.')[1:]
-str_ext = ' '.join(extension)
+extension = file.split('.')[-1]
+
 '''
 :( input of test.txt.pdf, with one extra extension, yields output of application/pdf
     expected "application/pd...", not "text/plain\n"
@@ -18,17 +18,17 @@ happens b/c
 # but b/c it puts everything in a list, even if it's just 1 extension,
 # i can't check it against strings like "jpeg", etc.
 
-if len(extension) > 1 or len(extension) == 0:
-    print("application/octet-stream")
-elif str_ext == "jpeg" or str_ext == "jpg":
+if extension == "jpeg" or extension == "jpg":
     print("image/jpeg")
-elif str_ext == "pdf":
+elif extension == "pdf":
     print("application/pdf")
-elif str_ext == "png":
+elif extension == "png":
     print("image/png")
-elif str_ext == "gif":
+elif extension == "gif":
     print("image/gif")
-elif str_ext == "txt":
+elif extension == "txt":
     print("text/plain")
-elif str_ext == "zip":
+elif extension == "zip":
     print("application/zip")
+else:
+    print("application/octet-stream")
