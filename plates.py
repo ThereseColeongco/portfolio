@@ -4,7 +4,6 @@ def main():
         print("Valid")
     else:
         print("Invalid")
-    print(middle_not_num(plate))
 
 def middle_not_num(s):
     index_list = []
