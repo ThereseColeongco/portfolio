@@ -20,6 +20,7 @@ def middle_not_num(s):
                 return False # if the character at 1 of the indexes is a letter, return False
             else:
                 continue
+        return True
     else:
         return True
 # if no numbers, return True (because there is no number in middle and there are no 0's as the first number)
