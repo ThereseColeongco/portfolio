@@ -27,17 +27,18 @@ def not_nil(s):
     for number in num:
         if number in s:
              index_list.append(s.index(number)) # will print all indexes of every number in plate
-    if index_list and str(s[min(index_list)]) == "0":
-        return False
-    else:
-        return True
+    if index_list:
+        if str(s[min(index_list)]) == "0":
+            return False
+        else:
+            return True
 
         # check if there is a number in s. if there is, check if there is at least 1 letter after it
 
 # check (in this or another function) if the first number
 
 def is_valid(s):
-    if s[0:2].isalpha() and s.isalnum() and 2 <= len(s) < 6 and middle_not_num(s) and not_nil(s):
+    if s[0:2].isalpha() and s.isalnum() and 2 <= len(s) <= 6 and middle_not_num(s) and not_nil(s):
         return True
     else:
         return False
