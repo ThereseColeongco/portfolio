@@ -19,7 +19,9 @@ def middle_not_num(s):
                 return False # if the character at 1 of the indexes is a letter, return False
             else:
                 continue
-    return True
+        return True
+    else:
+        return False
 
 def not_nil(s):
     index_list = []
@@ -32,6 +34,8 @@ def not_nil(s):
             return False
         else:
             return True
+    else:
+        return False
 
         # check if there is a number in s. if there is, check if there is at least 1 letter after it
 
