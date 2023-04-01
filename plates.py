@@ -4,7 +4,6 @@ def main():
         print("Valid")
     else:
         print("Invalid")
-    print(plate[0:2].isalpha(), plate.isalnum(), 2 <= len(plate) < 6, plate[1:len(plate)].isalpha(), middle_not_num(plate), not_nil(plate))
 
 def middle_not_num(s):
     index_list = []
@@ -16,7 +15,6 @@ def middle_not_num(s):
     #gets indexes from smallest index at which a number is found to length of s
     if index_list:
         for i in range(min(index_list), len(s)):
-            print("num", s[i], i)
             if s[i].isalpha(): # checks if character at each index is a letter
                 return False # if the character at 1 of the indexes is a letter, return False
             else:
@@ -29,7 +27,6 @@ def not_nil(s):
     for number in num:
         if number in s:
              index_list.append(s.index(number)) # will print all indexes of every number in plate
-
     if index_list and str(s[min(index_list)]) == "0":
         return False
     else:
