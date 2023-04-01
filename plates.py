@@ -4,6 +4,7 @@ def main():
         print("Valid")
     else:
         print("Invalid")
+    print(middle_not_num(plate))
 
 def middle_not_num(s):
     index_list = []
@@ -19,10 +20,9 @@ def middle_not_num(s):
                 return False # if the character at 1 of the indexes is a letter, return False
             else:
                 continue
-        return True
     else:
-        return False
-
+        return True
+# if no numbers, return True (because there is no number in middle and there are no 0's as the first number)
 def not_nil(s):
     index_list = []
     num = "0123456789"
@@ -35,7 +35,7 @@ def not_nil(s):
         else:
             return True
     else:
-        return False
+        return True
 
         # check if there is a number in s. if there is, check if there is at least 1 letter after it
 
