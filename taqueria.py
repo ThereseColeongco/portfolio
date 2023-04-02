@@ -14,7 +14,7 @@ total = [] #STOP PUTTING INITIALIZATIONS INSIDE THE LOOP OR IT WILL KEEP RE-INIT
 
 while True:
     try:
-        order = input("Item: ").title()
+        order = input("Item: ").title() # alternative to lowering
         total.append(items[order])
         print(f"Total: ${sum(total):.2f}")
         # user inputs a key. get key's value. append value to list. sum the list. repeat until user presses ctrl-d.
