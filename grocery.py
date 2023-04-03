@@ -1,5 +1,4 @@
 grocery = {}
-
 counter = 0
 #counter for item variable = 0. user inputs item. counter = counter + 1 and store item in grocery if there are no other of the same item in grocery. otherwise, just counter = counter + 1
 
@@ -19,8 +18,11 @@ while True:
         keys.sort()
         sorted_grocery = {i: grocery[i] for i in keys}
     except EOFError:
-        for groceries in sorted_grocery:
-            print(sorted_grocery[groceries], groceries) #print each key's value in grocery + space + each value's key in grocery
-        break
+        if 'sorted_grocery' in locals():
+            for groceries in sorted_grocery:
+                print(sorted_grocery[groceries], groceries) #print each key's value in grocery + space + each value's key in grocery
+            break
+        else:
+            break
     except KeyError:
         pass
