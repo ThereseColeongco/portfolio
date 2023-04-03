@@ -20,8 +20,7 @@ while True:
         sorted_grocery = {i: grocery[i] for i in keys}
     except EOFError:
         for groceries in sorted_grocery:
-            print(sorted_grocery[groceries], groceries)
- #print each key's value in grocery + space + each value's key in grocery
+            print(sorted_grocery[groceries], groceries) #print each key's value in grocery + space + each value's key in grocery
         break
     except KeyError:
         pass
