@@ -18,11 +18,13 @@ while True:
         keys.sort()
         sorted_grocery = {i: grocery[i] for i in keys}
     except EOFError:
-        if 'sorted_grocery' in locals():
-            for groceries in sorted_grocery:
-                print(sorted_grocery[groceries], groceries) #print each key's value in grocery + space + each value's key in grocery
-            break
-        else:
-            break
+        #if 'sorted_grocery' in locals():
+        for groceries in sorted_grocery:
+            print(sorted_grocery[groceries], groceries) #print each key's value in grocery + space + each value's key in grocery
+        break
+        #else:
+            #break
     except KeyError:
         pass
+    except NameError:
+        break
