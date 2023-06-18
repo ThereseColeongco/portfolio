@@ -39,31 +39,31 @@ int compute_score(string word)
     int n = 0;
     int score = 0;
     string alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    // e.g. string Oh,
+
+    // iterate through string word.
     while (word[n] != '\0')
     {
+        // if char in word is upper or is lower,
         if (isupper(word[n]) || islower(word[n]))
         {
+            // iterate through string alpha and through POINTS array.
             for (int i = 0; i < 26; i++)
             {
+                // change char in word to uppercase and if that char is the current char in alpha,
                 if (toupper(word[n]) == alpha[i])
                 {
+                    // add points corresponding to char in alpha to score.
                     score += POINTS[i];
-                    // i is incrementing but no points are being added. score = 0 always.
                 }
             }
         }
         else
         {
+            // if char in word is not a letter, add 0 to score.
             score += 0;
             // e.g. if user types Oh, it should only count points for O and h, not the comma.
         }
         n++;
     }
     return score;
-    // iterate through string word.
-    // if not isupper or not islower, 0 points
-    // else, iterate through string alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        // if word[n] == alpha[i], iterate through points array.
-            // int score += points[i]
 }
