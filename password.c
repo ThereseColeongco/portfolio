@@ -55,7 +55,7 @@ bool valid(string password)
         n++;
     }
 
-    if (count_lower > 0 && count_upper > 0 && count_symbol > 0)
+    if (count_lower > 0 && count_upper > 0 && count_symbol > 0 && count_num > 0)
     {
         return true;
     }
