@@ -32,6 +32,7 @@ bool valid(string password)
     int count_lower = 0;
     int count_upper = 0;
     int count_symbol = 0;
+    int count_num = 0;
 
     while (password[n] != '\0')
     {
@@ -42,6 +43,10 @@ bool valid(string password)
         else if (isupper(password[n]))
         {
             count_upper++;
+        }
+        else if (isdigit(password[n]))
+        {
+            count_num++;
         }
         else
         {
