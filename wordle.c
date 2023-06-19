@@ -170,13 +170,6 @@ int check_word(string guess, int wordsize, int status[], string choice)
         {
             status[i] = EXACT;
             score += status[i];
-            // break;
-            // instructions say that if EXACT, then break out of the loop b/c we're done with that character. move onto the next character.
-            // but when i break out of the loop, it no longer checks subsequent characters.
-
-            // now i removed the break, and strangely, it doesn't go through the j while loop for the second character in guess when it finds that a in games (guess) is not e in tears (choice)???, just goes straight to i++
-            // wtf is happening.
-            // guess brush, choice burns: r in brush is yellowed, u in brush is red, s in brush is red. it doesn't yellow any more subsequent characters once it finds the first yellow character because j doesn't reset to 0!!!
         }
         // if character in guess is NOT in the exact correct position of choice,
         // check if character in guess is in choice word. if it is, store CLOSE = 1 in that element in status, add that element in status to score.
@@ -225,5 +218,3 @@ void print_word(string guess, int wordsize, int status[])
     printf(RESET"\n");
     return;
 }
-
-// trouble with the yellow: it's not consistently printing yellow when there should be...
