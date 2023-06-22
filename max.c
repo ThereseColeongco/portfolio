@@ -28,7 +28,7 @@ int main(void)
 int max(int array[], int n)
 {
     int max = array[0];
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < n+1; i++)
     {
         if (array[i] > array[i - 1])
         {
@@ -43,4 +43,4 @@ int max(int array[], int n)
 //-10, -50, -100
     // when -50 is array[i], it IS greater than -100 aka array[i + 1]
     // when -100 is array[i], there's no array[i + 1] to compare to
-// solution: change the sign to array[i - 1]
+// solution: change the sign to array[i - 1]?
