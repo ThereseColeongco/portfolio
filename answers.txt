@@ -1,0 +1,11 @@
+sort1 uses: bubble sort
+
+How do you know?: compared to sort1 in random5000 and in sorted5000, it has a high run time in reverse5000
+
+sort2 uses: merge sort
+
+How do you know?: it has the lowest run times overall across reversed, random, and sorted txt files
+
+sort3 uses: selection sort
+
+How do you know?: it has similar run times across reversed, random, and sorted txt files but it's overall higher than merge sort
