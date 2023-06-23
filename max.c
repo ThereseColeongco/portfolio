@@ -30,12 +30,32 @@ int max(int array[], int n)
     int max = array[0];
     for (int i = 0; i < n; i++)
     {
-        if (array[i] > array[0])
+        if (array[i] > max)
         {
             max = array[i];
         }
     }
     return max;
+
+    /*
+    for (int i = 0; i < n; i++)
+    {
+        if (array[i] > array[i - 1])
+        {
+            max = array[i];
+        }
+    }
+    return max;
+    -----
+    for (int i = 1; i < n; i++)
+    {
+        if (max < array[i])
+        {
+            max = array[i];
+        }
+    }
+    return max;
+    */
 }
 
 
@@ -46,5 +66,4 @@ int max(int array[], int n)
     // when -50 is array[i], it IS greater than -100 aka array[i + 1]
     // when -100 is array[i], there's no array[i + 1] to compare to
 // solution: change the sign to array[i - 1]
-// problem with solution: when i = 0, aren't i accessing smth that's not in the array (i.e. array[-1])?
-// solution: just compare every other element in array to 
+// problem with solution: when i = 0, isn't i accessing smth that's not in the array (i.e. array[-1])?
