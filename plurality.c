@@ -91,26 +91,27 @@ void print_winner(void)
 // why exactly does else if ^^ not work for all cases again? in some situations,
 // when i = 0, candidates[i].votes = candidates[0].votes, which is == max.
 // so the if doesn't run, only the else if runs.
-// but it wasn't running when Bob is the winner or Charlie is the winner.
+// but ^^ wasn't printing only Bob when Bob is sole winner or only Charlie when Charlie is sole winner.
+//
     int max = candidates[0].votes;
     string winner[MAX];
     int win_index = 0;
     for (int i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++)
     {
-        for (int j = 0; j < MAX; j++)
-        {
+        //for (int j = 0; j < MAX; j++)
+        //{
             if (candidates[i].votes > max)
             {
                 max = candidates[i].votes;
-                winner[j] = candidates[i].name;
-                //printf("%s\n", candidates[i].name);
+                //winner[j] = candidates[i].name;
+                printf("%s\n", candidates[i].name);
             }
             else if (max == candidates[i].votes)
             {
-                winner[j] = candidates[i].name;
-                //printf("%s\n", candidates[i].name);
+                //winner[j] = candidates[i].name;
+                printf("%s\n", candidates[i].name);
             }
-        }
+        //}
     }
-    printf("%s\n", winner[]);
+    //printf("%s\n", winner[]);
 }
