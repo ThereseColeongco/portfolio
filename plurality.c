@@ -88,30 +88,29 @@ void print_winner(void)
     // check if...
 
 // count only number of votes first. iterate through the votes array and check for a max. printf(name at that max votes index); else if max == array[i], printf(all names associated with that number of votes);
+// why exactly does else if ^^ not work for all cases again? in some situations,
+// when i = 0, candidates[i].votes = candidates[0].votes, which is == max.
+// so the if doesn't run, only the else if runs.
+// but it wasn't running when Bob is the winner or Charlie is the winner.
     int max = candidates[0].votes;
+    string winner[MAX];
+    int win_index = 0;
     for (int i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++)
     {
-        if (candidates[i].votes > max)
+        for (int j = 0; j < MAX; j++)
         {
-            max = candidates[i].votes;
-            printf("%s\n", candidates[i].name);
-        }
-        else if (max == candidates[i].votes)
-        {
-            printf("%s\n", candidates[i].name);
-        }
-    }
-    //printf("%s\n", candidates[win_index].name);
-
-    /*
-    for (int i = 0; i < n; i++)
-    {
-        if (array[i] > max)
-        {
-            max = array[i];
+            if (candidates[i].votes > max)
+            {
+                max = candidates[i].votes;
+                winner[j] = candidates[i].name;
+                //printf("%s\n", candidates[i].name);
+            }
+            else if (max == candidates[i].votes)
+            {
+                winner[j] = candidates[i].name;
+                //printf("%s\n", candidates[i].name);
+            }
         }
     }
-    return max;
-    printf("%s\n", winner);
-    */
+    printf("%s\n", winner[]);
 }
