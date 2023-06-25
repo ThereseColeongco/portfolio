@@ -84,26 +84,6 @@ bool vote(string name)
 void print_winner(void)
 {
     // TODO
-    // there are at most 9 candidates, so at most, each candidate gets 1 vote → tie.
-    // you want to iterate through the votes for each candidate
-    // check if...
-
-// count only number of votes first. iterate through the votes array and check for a max. printf(name at that max votes index); else if max == array[i], printf(all names associated with that number of votes);
-// why exactly does else if ^^ not work for all cases again? in some situations,
-// when i = 0, candidates[i].votes = candidates[0].votes, which is == max.
-// so the if doesn't run, only the else if runs.
-// but ^^ wasn't printing only Bob when Bob is sole winner or only Charlie when Charlie is sole winner.
-// when Bob is sole winner, "Alice" and "Bob" prints.
-// when Charlie is sole winner, "Alice", "Bob", and "Charlie" prints.
-// below is the code that causes ^^ to happen. every other check passes except these 2.
-
-// max starts out as number of votes for Alice.
-// if max aka Alice = 1 and i = 0, 1 is not greater than max, so else if runs and prints Alice.
-// loop iterates to i = 1. max = still votes for Alice, but now Bob has 1 vote. 1 is not greater than 1, so else if still runs and prints Bob.
-// loop iterates to i = 2. max = still 1, but candidate is Charlie and charlie has 2 votes, so that's greater than max, so if runs, and Charlie gets printed.
-// loop continues until you reach max number of candidates (9) aka i = 8, but nothing runs b/c there's # of votes for i > 2 is all 0.
-// i can't use this logic. what logic can i use?
-
     int max = candidates[0].votes;
     string winner[MAX];
     // int win_index[candidate_count];
