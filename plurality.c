@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
-//#include <stdlib.h>
 
 // Max number of candidates
 #define MAX 9
@@ -86,8 +85,7 @@ void print_winner(void)
     // TODO
     int max = candidates[0].votes;
     string winner[MAX];
-    // int win_index[candidate_count];
-    for (int i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes > max)
         {
@@ -95,7 +93,7 @@ void print_winner(void)
         }
     }
 
-    for (int i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes == max)
         {
