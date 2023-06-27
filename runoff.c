@@ -257,22 +257,18 @@ bool print_winner(void)
 int find_min(void)
 {
     // TODO
-    int min = 1;
+    int min = voter_count;
     // iterate through candidates struct (i < candidate_count)
     for (int i = 0; i < candidate_count; i++)
     {
-        while (candidates[i].eliminated == false)
+        if (candidates[i].votes < min && candidates[i].eliminated == false)
         {
-            if (candidates[i].votes < min)
-            {
             min = candidates[i].votes;
-            }
-            else if (candidates[i].votes == candidates[i + 1].votes && i < candidate_count)
-            {
-                min = candidates[i].votes;
-            }
         }
-
+        else if (candidates[i].votes == candidates[i + 1].votes && i < candidate_count && candidates[i].eliminated == false)
+        {
+            min = candidates[i].votes;
+        }
     }
     return min;
 }
