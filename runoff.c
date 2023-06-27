@@ -275,7 +275,7 @@ bool is_tie(int min)
     // min tells us which candidates should be eliminated and therefore should not count in the is_tie!!!!
     for (int i = 0; i < candidate_count - 1; i++)
     {
-        if (candidates[i].votes == candidates[i + 1].votes && candidates[i].votes == min && candidates[i].eliminated == false)
+        if (candidates[i].votes == candidates[i + 1].votes && candidates[i].eliminated == false)
         {
             return true;
         }
