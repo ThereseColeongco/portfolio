@@ -273,18 +273,14 @@ bool is_tie(int min)
 {
     // TODO
     // min tells us which candidates should be eliminated and therefore should not count in the is_tie!!!!
-    for (int i = 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count - 1; i++)
     {
-        if (i < candidate_count - 1 && candidates[i].votes == candidates[i + 1].votes && candidates[i].eliminated == false)
-        {
-            return true;
-        }
-        else if (candidates[i].votes == min)
+        if (candidates[i].votes == min && candidates[i + 1].votes > min && candidates[i].eliminated == false)
         {
             return false;
         }
     }
-    return false;
+    return true;
 }
 
 // Eliminate the candidate (or candidates) in last place
