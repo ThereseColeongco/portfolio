@@ -243,7 +243,7 @@ bool print_winner(void)
     // TODO
     for (int i = 0; i < candidate_count; i++)
     {
-        if ((candidates[i].votes / voter_count) > 0.5)
+        if ((candidates[i].votes / voter_count) > (1/2))
         {
             printf("%i\n", candidates[i].votes);
             printf("%s\n", candidates[i].name);
