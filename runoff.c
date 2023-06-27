@@ -288,6 +288,10 @@ bool is_tie(int min)
         {
             return false;
         }
+        else
+        {
+            return true;
+        }
     }
     return true;
 }
