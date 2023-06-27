@@ -245,7 +245,6 @@ bool print_winner(void)
     {
         if (candidates[i].votes > (voter_count / 2))
         {
-            printf("%i\n", candidates[i].votes);
             printf("%s\n", candidates[i].name);
             return true;
         }
@@ -276,7 +275,7 @@ bool is_tie(int min)
     // min tells us which candidates should be eliminated and therefore should not count in the is_tie!!!!
     for (int i = 0; i < candidate_count - 1; i++)
     {
-        if (candidates[i].votes == candidates[i + 1].votes && candidates[i].votes != min)
+        if (candidates[i].votes == candidates[i + 1].votes && candidates[i].votes == min && candidates[i].eliminated == false)
         {
             return true;
         }
