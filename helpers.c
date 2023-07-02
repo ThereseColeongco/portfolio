@@ -125,9 +125,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             float sumR, sumG, sumB;
             sumR = sumG = sumB = 0;
             int total = 0;
-            for (int k = (h - 1); k <= h + 1; k++)
+            for (int k = (h - 1); k < h + 1; k++)
             {
-                for (int l = (w - 1); l <= w + 1; l++)
+                for (int l = (w - 1); l < w + 1; l++)
                 {
                     if (k >= 0 && k <= height - 1 && l >= 0 && l <= width - 1)
                     {
