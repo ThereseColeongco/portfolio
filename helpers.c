@@ -15,11 +15,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             // printf("%i\n", image[i][j].rgbtBlue);
-            float gray = round((image[i][j].rgbtBlue + image[i][j].rgbtRed + image[i][j].rgbtGreen) / 3);
-            if (gray > 255)
-            {
-                gray = 255;
-            }
+            float gray = round((image[i][j].rgbtBlue + image[i][j].rgbtRed + image[i][j].rgbtGreen) / 3.0);
             image[i][j].rgbtBlue = gray;
             image[i][j].rgbtRed = gray;
             image[i][j].rgbtGreen = gray;
