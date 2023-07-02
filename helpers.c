@@ -16,9 +16,18 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         {
             // printf("%i\n", image[i][j].rgbtBlue);
             float gray = round((image[i][j].rgbtBlue + image[i][j].rgbtRed + image[i][j].rgbtGreen) / 3);
-            image[i][j].rgbtBlue = gray;
-            image[i][j].rgbtRed = gray;
-            image[i][j].rgbtGreen = gray;
+            if (gray > 255)
+            {
+                image[i][j].rgbtBlue = 255;
+                image[i][j].rgbtRed = 255;
+                image[i][j].rgbtGreen = 255;
+            }
+            else
+            {
+                image[i][j].rgbtBlue = gray;
+                image[i][j].rgbtRed = gray;
+                image[i][j].rgbtGreen = gray;
+            }
         }
     }
     return;
@@ -38,13 +47,17 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             float sepiaBlue = round(.272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue);
             if (sepiaRed > 255 || sepiaGreen > 255 || sepiaBlue > 255)
             {
-                sepiaRed = 255;
-                sepiaGreen = 255;
-                sepiaBlue = 255;
+                image[i][j].rgbtBlue = 255;
+                image[i][j].rgbtRed = 255;
+                image[i][j].rgbtGreen = 255;
             }
-            image[i][j].rgbtBlue = sepiaBlue;
-            image[i][j].rgbtRed = sepiaRed;
-            image[i][j].rgbtGreen = sepiaGreen;
+            else
+            {
+                image[i][j].rgbtBlue = sepiaBlue;
+                image[i][j].rgbtRed = sepiaRed;
+                image[i][j].rgbtGreen = sepiaGreen;
+            }
+
         }
     }
     return;
