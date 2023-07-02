@@ -95,17 +95,17 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     // copy image into copy pixel by pixel in nested for loops
     // get pixel colors from copy but change pixel colors in image
     // if corner pixel, only 3 surrounding pixels
-        // image[0][0] has image[0][1], image[1][1], image[1][2] surrounding } (one at same i but j++, then i++ and j++, then keep same i and j++ again)
-        // image[0][width - 1] has image[0][width - 2], image[1][width - 1], image[1][width - 2] surrounding
-        // image[height - 1][0] has image[height - 1][1], image[height - 2][0], image[height - 2][1] surrounding
-        // image[height - 1][width - 1] has image[height - 1][width - 2], image[height - 2][width - 1], image[height - 2][width - 2] surrounding
+    // image[0][0] has image[0][1], image[1][1], image[1][2] surrounding } (one at same i but j++, then i++ and j++, then keep same i and j++ again)
+    // image[0][width - 1] has image[0][width - 2], image[1][width - 1], image[1][width - 2] surrounding
+    // image[height - 1][0] has image[height - 1][1], image[height - 2][0], image[height - 2][1] surrounding
+    // image[height - 1][width - 1] has image[height - 1][width - 2], image[height - 2][width - 1], image[height - 2][width - 2] surrounding
     // if edge but not corner pixel, only 5 surrounding pixels
-        // image[height - 1][width - 2] has image[height - 1][w - 1], image[h - 2][w - 1], image[h - 2][w - 2], image[h - 2][w - 3], image[h - 1][w - 3] surrounding
-            // as you move left, j - (k--) (or right: j - (k++))
-            // as k changes, l stays the same
-        // image[height - 2][width - 1] has image[h - 1][w - 1], image[h - 1][w - 2], image[h - 2][w - 2], image[h - 3][w - 1], image[h - 3][w - 2] surrounding
-            // as you move up, i - (l++) (or down: i - (l--))
-            // as l changes, k stays the same
+    // image[height - 1][width - 2] has image[height - 1][w - 1], image[h - 2][w - 1], image[h - 2][w - 2], image[h - 2][w - 3], image[h - 1][w - 3] surrounding
+    // as you move left, j - (k--) (or right: j - (k++))
+    // as k changes, l stays the same
+    // image[height - 2][width - 1] has image[h - 1][w - 1], image[h - 1][w - 2], image[h - 2][w - 2], image[h - 3][w - 1], image[h - 3][w - 2] surrounding
+    // as you move up, i - (l++) (or down: i - (l--))
+    // as l changes, k stays the same
     // if not edge or corner pixel, 8 surrounding pixels
 
     for (int h = 0; h < height; h++)
