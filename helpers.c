@@ -18,16 +18,11 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             float gray = round((image[i][j].rgbtBlue + image[i][j].rgbtRed + image[i][j].rgbtGreen) / 3);
             if (gray > 255)
             {
-                image[i][j].rgbtBlue = 255;
-                image[i][j].rgbtRed = 255;
-                image[i][j].rgbtGreen = 255;
+                gray = 255;
             }
-            else
-            {
-                image[i][j].rgbtBlue = gray;
-                image[i][j].rgbtRed = gray;
-                image[i][j].rgbtGreen = gray;
-            }
+            image[i][j].rgbtBlue = gray;
+            image[i][j].rgbtRed = gray;
+            image[i][j].rgbtGreen = gray;
         }
     }
     return;
@@ -45,19 +40,21 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             float sepiaRed = round(.393 * image[i][j].rgbtRed + .769 * image[i][j].rgbtGreen + .189 * image[i][j].rgbtBlue);
             float sepiaGreen = round(.349 * image[i][j].rgbtRed + .686 * image[i][j].rgbtGreen + .168 * image[i][j].rgbtBlue);
             float sepiaBlue = round(.272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue);
-            if (sepiaRed > 255 || sepiaGreen > 255 || sepiaBlue > 255)
+            if (sepiaRed > 255)
             {
-                image[i][j].rgbtBlue = 255;
-                image[i][j].rgbtRed = 255;
-                image[i][j].rgbtGreen = 255;
+                sepiaRed = 255;
             }
-            else
+            if (sepiaGreen > 255)
             {
-                image[i][j].rgbtBlue = sepiaBlue;
-                image[i][j].rgbtRed = sepiaRed;
-                image[i][j].rgbtGreen = sepiaGreen;
+                sepiaGreen = 255;
             }
-
+            if (sepiaBlue > 255)
+            {
+                sepiaBlue = 255;
+            }
+            image[i][j].rgbtBlue = sepiaBlue;
+            image[i][j].rgbtRed = sepiaRed;
+            image[i][j].rgbtGreen = sepiaGreen;
         }
     }
     return;
