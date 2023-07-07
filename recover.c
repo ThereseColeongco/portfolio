@@ -79,5 +79,6 @@ int main(int argc, char *argv[])
     // close card.raw
     fclose(unrecovered);
 
+    // free any malloc'd memory
     free(jpg_name);
 }
