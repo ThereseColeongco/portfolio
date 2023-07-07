@@ -34,8 +34,8 @@ int main(int argc, char *argv[])
     // create file called recovered to store each recovered jpeg
     FILE *recovered = NULL;
 
-    // creates an array of 8 characters (basically a string)
-    char jpg_name[8];
+    // allocates 8 bytes of memory for the recovered jpg name, 7 bytes for the three numbers + ".jpg" and 1 more byte for \0
+    char *jpg_name = malloc(8);
 
     // read card.raw (whose file pointer is stored in unrecovered) in 512 byte chunks and store each new chunk in buffer. as long as the chunk is 512 bytes...
     while (fread(buffer, 1, 512, unrecovered) == 512)
@@ -78,4 +78,6 @@ int main(int argc, char *argv[])
 
     // close card.raw
     fclose(unrecovered);
+
+    free(jpg_name);
 }
