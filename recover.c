@@ -73,7 +73,16 @@ int main(int argc, char *argv[])
         }
     }
 
+
     // close all remaining files
+
+    // close the last recovered jpeg file
+    if (recovered != NULL)
+    {
+        fclose(recovered);
+    }
+
+    // close card.raw
     fclose(unrecovered);
 
     // free any malloc'd memory
