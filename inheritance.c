@@ -6,14 +6,13 @@
 #include <time.h>
 
 // Each person has two parents and two alleles
-// each parent is a pointer to another person struct (i.e. each parent stores address of a node containing a 2-parent array and 2-allele array)
-// each allele is a char ('A', 'B', or 'O', as defined by random_allele function)
+// each parent is a pointer to another person struct (i.e. each parent stores address of a node containing a 2-parent array and
+// 2-allele array) each allele is a char ('A', 'B', or 'O', as defined by random_allele function)
 typedef struct person
 {
     struct person *parents[2];
     char alleles[2];
-}
-person;
+} person;
 
 // max number of generations
 const int GENERATIONS = 3;
@@ -31,7 +30,6 @@ void free_family(person *p);
 
 char random_allele();
 // returns a character: either 'A', 'B', or 'O'
-
 
 int main(void)
 {
@@ -55,8 +53,8 @@ int main(void)
 }
 
 // Create a new individual with `generations`
-// takes an integer generations as input and uses malloc to allocate 1 person for each member of the family of that number of generations
-// returns a pointer to the person in the youngest generation
+// takes an integer generations as input and uses malloc to allocate 1 person for each member of the family of that number of
+// generations returns a pointer to the person in the youngest generation
 person *create_family(int generations)
 {
     // TODO: Allocate memory for new person
@@ -87,8 +85,10 @@ person *create_family(int generations)
         new->parents[1] = NULL;
 
         // TODO: Randomly assign alleles
-        new->alleles[0] = random_allele();
-        new->alleles[1] = random_allele();
+        new->parents[0]->alleles[0] = random_allele();
+        new->parents[0]->alleles[1] = random_allele();
+        new->parents[1]->alleles[0] = random_allele();
+        new->parents[1]->alleles[0] = random_allele();
     }
 
     // TODO: Return newly created person
@@ -112,8 +112,6 @@ void free_family(person *p)
         // TODO: Free child
         free(p);
     }
-
-
 }
 
 // Print each family member and their alleles.
