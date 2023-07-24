@@ -6,8 +6,8 @@
 #include <time.h>
 
 // Each person has two parents and two alleles
-// each parent is a pointer to another person struct (i.e. each parent stores address of a node containing a 2-parent array and 2-allele array)
-// each allele is a char ('A', 'B', or 'O', as defined by random_allele function)
+// each parent is a pointer to another person struct (i.e. each parent stores address of a node containing a 2-parent array and
+// 2-allele array) each allele is a char ('A', 'B', or 'O', as defined by random_allele function)
 typedef struct person
 {
     struct person *parents[2];
@@ -53,8 +53,8 @@ int main(void)
 }
 
 // Create a new individual with `generations`
-// takes an integer generations as input and uses malloc to allocate 1 person for each member of the family of that number of generations
-// returns a pointer to the person in the youngest generation
+// takes an integer generations as input and uses malloc to allocate 1 person for each member of the family of that number of
+// generations returns a pointer to the person in the youngest generation */
 person *create_family(int generations)
 {
     // TODO: Allocate memory for new person
