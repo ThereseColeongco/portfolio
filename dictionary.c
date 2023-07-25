@@ -120,11 +120,26 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-
+    node *ptr = NULL;
+    int count = 0;
+    for (int i = 0; i < N; i++)
+    {
+        ptr = table[i];
+        // if table[i] is NULL, ptr->next doesn't exist, so need to check if ptr != NULL. if it is NULL, go to next index
+        if (ptr != NULL)
+        {
+            count++;
+            while (ptr->next != NULL)
+            {
+                count++;
+                ptr = ptr->next;
+            }
+        }
+    }
     // either iterate over every linked list in hash table and count # of nodes in each
     // or as you're loading hash table, keep track of number of words you're adding to dictionary so far so you can return that value in size function
     // the "as you're loading option" may be faster? how can we know when a new item has been added to hash table?
-    return 0;
+    return count;
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
@@ -133,7 +148,7 @@ bool unload(void)
     // TODO
     // iterate over each linked list in hash table, free each node
 
-    for (int i = 0; i < sizeof(table) / sizeof(table[0]); i++)
+    for (int i = 0; i < N; i++)
     {
         node *cursor = table[i];
         node *tmp = NULL;
@@ -144,13 +159,5 @@ bool unload(void)
             free(tmp);
         }
     }
-
-    for (int i = 0; i < sizeof(table) / sizeof(table[0]); i++)
-    {
-        if (table[i] == NULL)
-        {
-            return true;
-        }
-    }
-    return false;
+    return true;
 }
