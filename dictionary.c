@@ -114,6 +114,7 @@ bool load(const char *dictionary)
 
     // false if memory error or file opening error
     return true;
+    fclose(file);
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
