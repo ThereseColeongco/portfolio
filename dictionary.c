@@ -107,8 +107,8 @@ bool load(const char *dictionary)
     }
     fclose(file);
     // store dictionary in hash table by calling hash() to obtain a hash value for each word
-        // w/c linked list to put in? hash function.
-        // add more data to hash table: use node *n = malloc(sizeof(node)); and smth like strcpy(n->word, "Hello"); w/c copies "Hello" into n->word
+    // w/c linked list to put in? hash function.
+    // add more data to hash table: use node *n = malloc(sizeof(node)); and smth like strcpy(n->word, "Hello"); w/c copies "Hello" into n->word
     // insert node into hash table at that location
     // return true if successful (dictionary stored)
 
