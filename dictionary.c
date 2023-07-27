@@ -34,7 +34,7 @@ typedef struct node
 } node;
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = 26;
+const unsigned int N = 26*26*26*26*26;
 
 // Hash table
 node *table[N];
@@ -66,7 +66,20 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
-    return toupper(word[0]) - 'A';
+    // reference: https://www.reddit.com/r/cs50/comments/w4tqyf/looking_for_advice_on_my_hash_function_for_speller/
+
+    int hash = 0;
+    int last_char = strlen(word);
+    if (word[last_char] == '\0' || word[last_char] == '\n')
+    {
+        for (int i = 0; i < strlen(word); i++)
+        {
+            int function = toupper(word[i]) - 'A';
+            hash += (function*((i+1)*11)) % N;
+        }
+        return hash;
+    }
+    return hash;
 }
 
 // Loads all words in dictionary into memory (hash table), returning true if successful, else false
