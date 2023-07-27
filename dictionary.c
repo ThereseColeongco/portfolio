@@ -1,30 +1,14 @@
 // Implements a dictionary's functionality
-
+#include "dictionary.h"
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
-#include "dictionary.h"
-
-// ideally, O(n/k) where k = number of buckets for a hash table
-// the greater k is, the faster the running time IRL
-// this means evenly distributed data across the buckets... there's no unused buckets but it's fast bc the list of stuff inside a bucket is relatively short
-// faster if u don't care if data is sorted
-
 // dictionaries contain lists of correctly spelled words.
 // texts contain sample texts to run spell checker against
 // keys contain lists of mispelled words in each sample text.
-
-
-
-// hash - take a word and run a hash function on it. return a number. that number is the index of the array element pointing to the linked list that the word will go in.
-    // each node contains char word[LENGTH + 1] and struct node *next (pointer to the next word in the list)
-    // last *next = NULL;
-// size - how many words in dictionary
-// check - is word in dictionary or not? (i.e. is it correctly spelled?)
-// unload - any memory allocated to store data in data structure is freed
 
 // Represents a node in a hash table
 typedef struct node
@@ -34,7 +18,7 @@ typedef struct node
 } node;
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = 26*26*26*26*26;
+const unsigned int N = 26 * 26 * 26 * 26 * 26;
 
 // Hash table
 node *table[N];
@@ -59,7 +43,6 @@ bool check(const char *word)
     return false;
     // iterate through linked list using a "cursor" and look for the word, making sure to strcasecmp each word in the list
     // if word is in linked list, return true;
-
 }
 
 // Hashes word to a number
@@ -75,7 +58,7 @@ unsigned int hash(const char *word)
         for (int i = 0; i < strlen(word); i++)
         {
             int function = toupper(word[i]) - 'A';
-            hash += (function*((i+1)*11)) % N;
+            hash += (function * ((i + 1) * 11)) % N;
         }
         return hash;
     }
@@ -119,12 +102,6 @@ bool load(const char *dictionary)
         }
     }
     fclose(file);
-    // store dictionary in hash table by calling hash() to obtain a hash value for each word
-    // w/c linked list to put in? hash function.
-    // add more data to hash table: use node *n = malloc(sizeof(node)); and smth like strcpy(n->word, "Hello"); w/c copies "Hello" into n->word
-    // insert node into hash table at that location
-    // return true if successful (dictionary stored)
-
     // false if memory error or file opening error
     return true;
 }
@@ -149,9 +126,6 @@ unsigned int size(void)
             }
         }
     }
-    // either iterate over every linked list in hash table and count # of nodes in each
-    // or as you're loading hash table, keep track of number of words you're adding to dictionary so far so you can return that value in size function
-    // the "as you're loading option" may be faster? how can we know when a new item has been added to hash table?
     return count;
 }
 
