@@ -55,7 +55,7 @@ unsigned int hash(const char *word)
     int last_char = strlen(word);
     if (word[last_char] == '\0' || word[last_char] == '\n')
     {
-        for (int i = 0; i < strlen(word); i++)
+        for (int i = 0; i < last_char; i++)
         {
             int function = toupper(word[i]) - 'A';
             hash += (function * ((i + 1) * 11)) % N;
