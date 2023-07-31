@@ -8,21 +8,24 @@ def main():
             print("AMEX")
         elif first_two in ['51', '52', '53', '54', '55'] and len(number) == 16:
             print("MASTERCARD")
-        elif len(number) in [13, 16] and number[:1] == 4:
+        elif len(number) in [13, 16] and number[:1] == '4':
             print("VISA")
     else:
         print("INVALID")
 
 
 def checksum(card):
-    s = 0
+    s = ""
+    x = 0
     for i in range(len(card)):
         if i % 2 == 0:
-            s += int(card[i]) * 2
+            s += str(int(card[i]) * 2)
+    x = sum([int(d) for d in s])
+
     for j in reversed(range(len(card))):
-        if j % 2 == 1:
-            s += sum(range(int(card[j])))
-    if s % 10 == 0:
+        if j % 2 != 0:
+            x += int(card[j])
+    if x % 10 == 0:
         return True
 
 
