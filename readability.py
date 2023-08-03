@@ -1,5 +1,6 @@
 from cs50 import get_string
 
+
 def main():
     text = get_string("Text: ")
 
@@ -20,6 +21,7 @@ def main():
     else:
         print("Grade " + str(round(index)))
 
+
 def count_letters(text):
     letter_count = 0
     for i in text:
@@ -32,7 +34,7 @@ def count_letters(text):
 def count_words(text):
     word_count = 0
     for i in text:
-        if i == ' ':
+        if i == " ":
             word_count += 1
 
     # add 1 extra to word counter b/c at the end of the text, there's 1 more word but no space to indicate a word.
@@ -44,7 +46,7 @@ def count_words(text):
 def count_sentences(text):
     sentence_count = 0
     for i in text:
-        if i in ['.', '?', '!']:
+        if i in [".", "?", "!"]:
             sentence_count += 1
     return sentence_count
 
