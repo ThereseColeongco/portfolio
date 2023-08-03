@@ -47,10 +47,6 @@ int count_letters(string text)
         {
             count_letter++;
         }
-        else
-        {
-            count_letter += 0;
-        }
         n++;
     }
 
