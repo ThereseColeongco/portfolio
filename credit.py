@@ -12,6 +12,8 @@ def main():
             print("MASTERCARD")
         elif len(number) in [13, 16] and number[:1] == '4':
             print("VISA")
+        else:
+            print("INVALID")
     else:
         print("INVALID")
 
@@ -87,7 +89,9 @@ def checksum(card):
 main()
 
 '''
-378282246310005
-
+should return invalid for:
+369421438430814
+4062901840
+5673598276138003
 
 '''
