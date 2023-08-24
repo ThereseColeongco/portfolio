@@ -1,0 +1,3 @@
+Perhaps their aura is yellow and blue because their average valence is less than 0.5, their average energy is a little greater than 0.5 but average danceability is 0.716.
+
+Spotify's valence doesn't do a very good job of accurately measuring the positivity of a song. Perhaps another way to get the aura is to get the most frequent musical key of the song and if it's minor, it may be more likely that it's a sad song while a song in a major key may be more likely to be happy. Or you could let the user give a number rating for how happy or sad a song is and get the average of that number rating.
