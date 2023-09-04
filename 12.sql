@@ -1,0 +1,1 @@
+SELECT DISTINCT(title) FROM movies, people, stars WHERE stars.person_id = people.id AND stars.movie_id = movies.id AND name IN ('Bradley Cooper', 'Jennifer Lawrence') GROUP BY title HAVING COUNT(*) = 2;
