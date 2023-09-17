@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+                document.addEventListener('DOMContentLoaded', function() {
+
+                    let feedback1 = document.querySelector('#feedback1');
+                    let feedback2 = document.querySelector('#feedback2');
+
+                    let right = document.querySelector('.right');
+                    right.addEventListener('click', function() {
+                        right.style.backgroundColor = 'green';
+                        feedback1.innerHTML = 'Correct!'
+                    });
+
+                    let wrong = document.querySelectorAll('.wrong');
+                    for (let i = 0; i < wrong.length; i++) {
+                        wrong[i].addEventListener('click', function() {
+                            wrong[i].style.backgroundColor = 'red';
+                            feedback1.innerHTML = 'Incorrect!';
+                        });
+                    }
+
+                    // check if submit is clicked
+                    document.querySelector('#submit').addEventListener('click', function() {
+                        let input = document.querySelector('input');
+                        if (input.value.toLowerCase() == 'prunes')
+                        {
+                            input.style.backgroundColor = 'green';
+                            feedback2.innerHTML = 'Correct!';
+                        }
+                        else
+                        {
+                            input.style.backgroundColor = 'red';
+                            feedback2.innerHTML = 'Incorrect!';
+                        }
+                    });
+                });
+
+                // listen for the following once the DOMContentLoaded:
+                    // query all elements of a certain selector: listen for the wrong button being clicked
+                        // button background color → red
+                        // inner html: feedback paragraph → Incorrect
+                    // query selector: listen for the right button being clicked'
+                        // button background color → green
+                        // feedback paragraph → Correct!
+                    // listen for the right answer being in the textbox
+                        // if the value in input is the right answer: text field → green
+                        // feedback paragraph → Correct!
+                    // listen for the wrong answer being in the textbox and submit button being clicked
+                        // else: text field → red
+                        // feedback paragraph → Incorrect
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>What is the rarest M&M color?</h3>
+                <button type="button" class="wrong">Red</button>
+                <button type="button" class="wrong">Green</button>
+                <button type="button" class="right">Brown</button>
+                <p id="feedback1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is the common name for dried plums?</h3>
+                <input type="text">
+                <button type="submit" id="submit">Submit Answer</button>
+                <p id="feedback2"></p>
+            </div>
+        </div>
+    </body>
+</html>
