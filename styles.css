@@ -1,0 +1,45 @@
+h1
+{
+    font-size: large;
+    margin: 1%;
+    color: #808080;
+    font-family: 'Comic Neue', cursive;
+    font-weight: normal;
+}
+
+nav
+{
+    background-color: #e3f2fd;
+    font-family: 'Comic Neue', cursive;
+    position: fixed;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    text-decoration: underline;
+    text-decoration-color: #989898;
+}
+
+button
+{
+    font-family: 'Comic Neue', cursive;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pfp
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 8px;
+}
+
+ul
+{
+    font-size: large;
+    margin: 1%;
+    color: #808080;
+    font-family: Verdana, Arial, sans-serif;
+    font-weight: normal;
+}
