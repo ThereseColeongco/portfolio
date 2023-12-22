@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{ transaction.symbol }}</td>
                     <td>{{ transaction.shares }}</td>
-                    <td>{{ transaction.price }}</td>
+                    <td>{{ usd(transaction.price) }}</td>
                     <td>{{ transaction.date }}</td>
                 </tr>
             {% endfor %}
