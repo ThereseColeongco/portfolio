@@ -159,12 +159,12 @@ def quote():
     symbol = request.form.get("symbol")
 
     if request.method == "POST":
-        if not symbol or not symbol.isalpha():
+        stock = lookup(symbol)
+        if not symbol or stock == None:
             return apology("Input valid symbol")
         else:
-            stock = lookup(symbol)
-            price = stock["price"]
             name = stock["name"]
+            price = stock["price"]
             return render_template("quoted.html", name=name, symbol=symbol, price=usd(price))
     else:
         return render_template("quote.html")
