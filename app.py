@@ -67,7 +67,7 @@ def buy():
 
     if request.method == "POST":
         symbol = request.form.get("symbol")
-        shares = int(request.form.get("shares"))
+        shares = request.form.get("shares")
         stock = lookup(symbol)
 
         # symbol input
@@ -77,7 +77,7 @@ def buy():
             return apology("Symbol doesn't exist.")
 
         # number of shares input
-        if shares <= 0:
+        if int(shares) <= 0 or not shares.isdigit() or float(shares).is_integer():
             return apology("Invalid number of shares.")
 
         user_id = session["user_id"]
@@ -161,7 +161,10 @@ def quote():
         stock = lookup(symbol)
         price = stock["price"]
         name = stock["name"]
-        return render_template("quoted.html", name=name, symbol=symbol, price=usd(price))
+        if name != symbol or not symbol:
+            return apology("Input valid symbol")
+        else:
+            return render_template("quoted.html", name=name, symbol=symbol, price=usd(price))
     else:
         return render_template("quote.html")
 
