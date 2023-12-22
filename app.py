@@ -13,6 +13,7 @@ app = Flask(__name__)
 
 # Custom filter
 app.jinja_env.filters["usd"] = usd
+app.jinja_env.globals.update(usd=usd)
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
@@ -38,26 +39,25 @@ def index():
     """Show portfolio of stocks"""
     user_id = session["user_id"]
 
-    symbol_db = db.execute("SELECT symbol FROM transactions WHERE user_id = ?", user_id)
-    symbol = symbol_db[0]["symbol"]
-    shares_db = db.execute("SELECT SUM(shares) AS shares FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
-    shares = shares_db[0]["shares"]
-    current_price_dict = lookup(symbol)
-    current_price = current_price_dict["price"]
+    # user's stocks and shares
+    stocks = db.execute("SELECT symbol, SUM(shares) AS total_shares FROM transactions WHERE user_id = ? GROUP BY symbol HAVING total_shares > 0", user_id)
 
-    db.execute("INSERT INTO transactions (total_value_holding) VALUES (?)", current_price*shares)
-
-    stocks = db.execute("SELECT symbol, SUM(shares) AS shares, price, total_value_holding FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
-
+    # user's current cash balance
     cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
     cash = round(cash_db[0]["cash"], 2)
 
-    return render_template("index.html", stocks = stocks, cash = cash)
-    # number of shares of each stock
-    # current price of each stock (use lookup)
-    # total value of each holding
-    # user's current cash balance
-    # total value of stocks and cash together
+    #total_value = cash
+    grand_total = cash
+
+    for stock in stocks:
+        quote = lookup(stock["symbol"])
+        stock["name"] = quote["name"]
+        stock["price"] = quote["price"]
+        stock["value"] = stock["price"] + stock["total_shares"]
+        grand_total += stock["value"]
+
+
+    return render_template("index.html", stocks = stocks, cash = cash, grand_total = grand_total)
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -95,7 +95,6 @@ def buy():
             return redirect("/")
     else:
         return render_template("buy.html")
-
 
 
 @app.route("/history")
@@ -203,4 +202,33 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
-    return apology("TODO")
+    stocks = db.execute("SELECT symbol, SUM(shares) as total_shares FROM transactions GROUP BY symbol HAVING total_shares > 0 WHERE user_id = ?", user_id)
+    if request.method == "POST":
+        symbol = request.form.get("symbol").upper()
+        shares = request.form.get("shares")
+        if not symbol:
+            return apology("Must select a symbol")
+        elif not shares or not shares.isdigit() or int(shares) <= 0:
+            return apology("Shares must be a positive integer")
+        else:
+            shares = int(shares)
+
+        for stock in stocks:
+            if stock["symbol"] == symbol:
+                if shares > stock["total_shares"]:
+                    return apology("Not enough shares")
+                else:
+                    quote = lookup(symbol)
+                    if quote is None:
+                        return apology("Symbol not found")
+                    price = quote["price"]
+                    total_sale = price * shares
+
+                    db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", total_sale, user_id)
+                    flash("Sold!")
+
+                    return redirect("/")
+        return apology("Symbol not found")
+
+    else:
+        return render_template("sell.html", stocks = stocks)

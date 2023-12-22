@@ -8,6 +8,7 @@
     <table>
         <thead>
             <th>Symbol</th>
+            <th>Name</th>
             <th>Shares</th>
             <th>Price</th>
             <th>TOTAL</th>
@@ -16,9 +17,11 @@
             {% for stock in stocks %}
                 <tr>
                     <td>{{ stock.symbol }}</td>
-                    <td>{{ stock.shares }}</td>
-                    <td>{{ stock.price }}</td>
-                    <td>{{ stock.total_value_holding }}</td>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.total_shares }}</td>
+                    <td>{{ usd(stock.price) }}</td>
+                    <td>{{ usd(stock.price * stock.total_shares) }}</td>
+
                 </tr>
             {% endfor %}
         </tbody>
@@ -26,14 +29,16 @@
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td>Cash</td>
-                <td>{{ cash }}</td>
+                <td>{{ usd(cash) }}</td>
             </tr>
             <tr>
+                <td>{{test}}</td>
                 <td></td>
                 <td></td>
                 <td>TOTAL</td>
-                <td></td>
+                <td>{{ usd(grand_total) }}</td>
             </tr>
         </tfoot>
     </table>
