@@ -76,7 +76,9 @@ def buy():
             return apology("Symbol doesn't exist.")
 
         # number of shares input
-        if not shares or not shares.isnumeric() or float(shares).is_integer() or float(shares) <= 0:
+        if not shares or not shares.isdigit():
+            return apology("Invalid number of shares.")
+        elif shares == "0":
             return apology("Invalid number of shares.")
 
         user_id = session["user_id"]
