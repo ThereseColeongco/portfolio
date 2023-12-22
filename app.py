@@ -40,7 +40,8 @@ def index():
     user_id = session["user_id"]
 
     # user's stocks and shares
-    stocks = db.execute("SELECT symbol, SUM(shares) AS total_shares FROM transactions WHERE user_id = ? GROUP BY symbol HAVING total_shares > 0", user_id)
+    stocks = db.execute(
+        "SELECT symbol, SUM(shares) AS total_shares FROM transactions WHERE user_id = ? GROUP BY symbol HAVING total_shares > 0", user_id)
 
     # user's current cash balance
     cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
@@ -116,7 +117,7 @@ def login():
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-
+        password = request.form.get("password")
         # Ensure username was submitted
         if not request.form.get("username"):
             return apology("must provide username", 403)
@@ -241,3 +242,25 @@ def sell():
 
     else:
         return render_template("sell.html", stocks = stocks)
+
+@app.route("/password", methods=["GET", "POST"])
+def password():
+    if request.method == "POST":
+        password = request.form.get("password")
+        username = request.form.get("username")
+        confirmation = request.form.get("confirmation")
+        usernames = db.execute("SELECT username FROM users WHERE username = ?", username)
+        if not username or not password or not confirmation:
+            return apology("Fill in all blank fields.")
+        elif username != usernames[0]["username"]:
+            return apology("Username does not exist.")
+        elif password != confirmation:
+            return apology("Passwords don't match.")
+
+        hash = generate_password_hash(password)
+
+        db.execute("UPDATE users SET hash = ?", hash)
+        flash("Password changed!")
+        return redirect("/login")
+    else:
+        return render_template("password.html")
