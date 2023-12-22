@@ -44,16 +44,15 @@ def index():
 
     # user's current cash balance
     cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
-    cash = round(cash_db[0]["cash"], 2)
+    cash = cash_db[0]["cash"]
 
-    #total_value = cash
     grand_total = cash
 
     for stock in stocks:
         quote = lookup(stock["symbol"])
         stock["name"] = quote["name"]
         stock["price"] = quote["price"]
-        stock["value"] = stock["price"] + stock["total_shares"]
+        stock["value"] = stock["price"] * stock["total_shares"]
         grand_total += stock["value"]
 
 
@@ -77,13 +76,13 @@ def buy():
             return apology("Symbol doesn't exist.")
 
         # number of shares input
-        if int(shares) <= 0 or not float(shares).is_integer():
+        if not shares or int(shares) <= 0:
             return apology("Invalid number of shares.")
 
         user_id = session["user_id"]
         user_cash_dict = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
         user_cash = user_cash_dict[0]["cash"]
-        transaction_total = shares*stock["price"]
+        transaction_total = int(shares)*stock["price"]
         if transaction_total > user_cash:
             return apology("You don't have enough cash.")
         else:
@@ -101,7 +100,9 @@ def buy():
 @login_required
 def history():
     """Show history of transactions"""
-    return apology("TODO")
+    user_id = session["user_id"]
+    stocks = db.execute("SELECT symbol, shares, price, date FROM transactions WHERE user_id = ?", user_id)
+    return render_template("history.html", stocks = stocks)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -158,12 +159,12 @@ def quote():
     symbol = request.form.get("symbol")
 
     if request.method == "POST":
-        stock = lookup(symbol)
-        price = stock["price"]
-        name = stock["name"]
-        if name != symbol or not symbol:
+        if not symbol or not symbol.isalpha():
             return apology("Input valid symbol")
         else:
+            stock = lookup(symbol)
+            price = stock["price"]
+            name = stock["name"]
             return render_template("quoted.html", name=name, symbol=symbol, price=usd(price))
     else:
         return render_template("quote.html")
@@ -205,7 +206,8 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
-    stocks = db.execute("SELECT symbol, SUM(shares) as total_shares FROM transactions GROUP BY symbol HAVING total_shares > 0 WHERE user_id = ?", user_id)
+    user_id = session["user_id"]
+    stocks = db.execute("SELECT symbol, SUM(shares) AS total_shares FROM transactions WHERE user_id = ? GROUP BY symbol HAVING total_shares > 0", user_id)
     if request.method == "POST":
         symbol = request.form.get("symbol").upper()
         shares = request.form.get("shares")
@@ -228,9 +230,11 @@ def sell():
                     total_sale = price * shares
 
                     db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", total_sale, user_id)
+                    db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)", user_id, symbol, -shares, price)
                     flash("Sold!")
 
                     return redirect("/")
+
         return apology("Symbol not found")
 
     else:
