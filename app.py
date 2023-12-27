@@ -10,6 +10,10 @@ def index():
 def projects():
     return render_template("projects.html")
 
+@app.route("/project")
+def project():
+    return render_template("project.html")
+
 @app.route("/cv")
 def cv():
     return render_template("cv.html")
