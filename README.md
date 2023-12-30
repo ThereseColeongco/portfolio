@@ -1,8 +1,6 @@
 # portfolio
 #### Video Demo:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gR-z828yz3o?si=MRDaA1IHBew_g1d3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-If the embedded video doesn't work, please click: https://youtu.be/gR-z828yz3o?si=kC-frEDTS9kEe8wO
+https://youtu.be/gR-z828yz3o?si=kC-frEDTS9kEe8wO
 
 ## What my project is and why I made it:
 This is a portfolio website for me to use someday. (This is my first foray into computer science, so there are no actual projects or CV content yet!)
